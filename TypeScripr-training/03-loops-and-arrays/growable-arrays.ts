@@ -1,4 +1,4 @@
-let sportTwo = ["Fitness", "Tennis", "Swimming"];
+let sportTwo: string[] = ["Fitness", "Tennis", "Swimming"];
 
 sportTwo.push("Baseball");
 sportTwo.push("Football");
