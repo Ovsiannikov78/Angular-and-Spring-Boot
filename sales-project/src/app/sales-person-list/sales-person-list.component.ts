@@ -21,5 +21,4 @@ export class SalesPersonListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
