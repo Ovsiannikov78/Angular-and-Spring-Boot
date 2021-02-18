@@ -23,7 +23,7 @@ export class ProductService {
     // build URL based on category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
 
-    return this.getProduct(searchUrl);
+    return this.getProducts(searchUrl);
   }
 
   searchProducts(theKeyword: string): Observable<Product[]> {
@@ -31,10 +31,10 @@ export class ProductService {
     // build URL based on keyword
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
 
-    return this.getProduct(searchUrl);
+    return this.getProducts(searchUrl);
   }
 
-  private getProduct(searchUrl: string): Observable<Product[]> {
+  private getProducts(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
       map(response => response._embedded.products));
   }
@@ -43,6 +43,15 @@ export class ProductService {
 
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
       map(response => response._embedded.productCategory));
+  }
+
+  getProduct(theProductId: number): Observable<Product> {
+
+    // need to build URL based on product id
+    const productURL = `${this.baseUrl}/${theProductId}`;
+
+    return this.httpClient.get<Product>(productURL);
+
   }
 }
 
