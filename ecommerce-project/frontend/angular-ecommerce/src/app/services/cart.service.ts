@@ -43,17 +43,17 @@ export class CartService {
     this.computeCartTotals();
   }
 
-  private computeCartTotals() {
+   computeCartTotals() {
 
-    let totalPriceValue: number = 0;
-    let totalQuantityValue: number = 0;
+     let totalPriceValue: number = 0;
+     let totalQuantityValue: number = 0;
 
-    for (let currentCartItem of this.cartItems) {
-      totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
-      totalQuantityValue += currentCartItem.quantity;
-    }
+     for (let currentCartItem of this.cartItems) {
+       totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
+       totalQuantityValue += currentCartItem.quantity;
+     }
 
-    // publish the new values ... all subscribers will receive the new data
+     // publish the new values ... all subscribers will receive the new data
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
@@ -61,7 +61,7 @@ export class CartService {
     this.logCartData(totalPriceValue, totalQuantityValue);
   }
 
-  private logCartData(totalPriceValue: number, totalQuantityValue: number) {
+  logCartData(totalPriceValue: number, totalQuantityValue: number) {
 
     console.log('Content of the cart');
     for (let tempCartItem of this.cartItems) {
