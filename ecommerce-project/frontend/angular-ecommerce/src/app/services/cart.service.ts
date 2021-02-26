@@ -83,10 +83,10 @@ export class CartService {
     }
   }
 
-  private remove(theCartItem: CartItem) {
+  remove(theCartItem: CartItem) {
 
     // get index of the item in the array
-    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id = theCartItem.id);
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
 
     // if found, remove the item from the array at the given index
     if (itemIndex > -1) {
