@@ -2,40 +2,50 @@
   <div class="section-content section-content-p30">
     <div class="container-fluid">
 
-      <table class="table table-bordered">
-        <tr>
-          <th class="text-center" width="20%">Product Image</th>
-          <th class="text-center" width="50%">Product Details</th>
-          <th class="text-center" width="30%"></th>
-        </tr>
+      <div *ngIf="cartItems.length > 0">
 
-        <tr *ngFor="let tempCartItem of cartItems">
-          <td>
-            <img src="{{ tempCartItem.imageUrl }}" class="img-responsive" width="150px"/>
-          </td>
-          <td>
-            <p class="text-center">{{tempCartItem.name}}</p>
-            <p class="text-center">{{tempCartItem.unitPrice | currency: 'EUR'}}</p>
-          </td>
-          <td>
-            <div class="items" class="text-center">
-              <label>Quantity:</label> {{tempCartItem.quantity}}
-            </div>
-            <p class="mt-2" class="text-center">
-              Subtotal: {{tempCartItem.quantity * tempCartItem.unitPrice | currency: 'EUR'}}</p>
-          </td>
-        </tr>
+        <table class="table table-bordered">
+          <tr>
+            <th class="text-center" width="20%">Product Image</th>
+            <th class="text-center" width="50%">Product Details</th>
+            <th class="text-center" width="30%"></th>
+          </tr>
 
-        <tr>
-          <td colspan="2"></td>
-          <td style="font-weight: bold">
-            <p class="text-center">Total Quantity: {{ totalQuantity }}</p>
-            <p class="text-center">Shipping: FREE</p>
-            <p class="text-center">Total Price: {{ totalPrice | currency: 'EUR'}}</p>
-          </td>
-        </tr>
+          <tr *ngFor="let tempCartItem of cartItems">
+            <td>
+              <img src="{{ tempCartItem.imageUrl }}" class="img-responsive" width="150px"/>
+            </td>
+            <td>
+              <p class="text-center">{{tempCartItem.name}}</p>
+              <p class="text-center">{{tempCartItem.unitPrice | currency: 'EUR'}}</p>
+            </td>
+            <td>
+              <div class="items" class="text-center">
+                <label>Quantity:</label> {{tempCartItem.quantity}}
+              </div>
+              <p class="mt-2" class="text-center">
+                Subtotal: {{tempCartItem.quantity * tempCartItem.unitPrice | currency: 'EUR'}}</p>
+            </td>
+          </tr>
 
-      </table>
+          <tr>
+            <td colspan="2"></td>
+            <td style="font-weight: bold">
+              <p class="text-center">Total Quantity: {{ totalQuantity }}</p>
+              <p class="text-center">Shipping: FREE</p>
+              <p class="text-center">Total Price: {{ totalPrice | currency: 'EUR'}}</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+      <!-- if cart is empty then display a message -->
+      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+        Your shopping cart is empty.
+      </div>
+
     </div>
   </div>
 </div>
