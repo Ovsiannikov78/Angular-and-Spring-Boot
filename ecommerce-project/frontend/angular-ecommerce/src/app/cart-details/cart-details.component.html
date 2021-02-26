@@ -4,9 +4,28 @@
 
       <table class="table table-bordered">
         <tr>
-          <th width="20%">Product Image</th>
-          <th width="50%">Product Details</th>
-          <th width="30%"></th>
+          <th class="text-center" width="20%">Product Image</th>
+          <th class="text-center" width="50%">Product Details</th>
+          <th class="text-center" width="30%"></th>
+        </tr>
+
+        <tr *ngFor="let tempCartItem of cartItems">
+          <td>
+            <img src="{{ tempCartItem.imageUrl }}" class="img-responsive" width="150px"/>
+          </td>
+          <td>
+            <p class="text-center">{{tempCartItem.name}}</p>
+            <p class="text-center">{{tempCartItem.unitPrice | currency: 'EUR'}}</p>
+          </td>
+          <td>
+            <div class="items" class="text-center">
+              <label>Quantity:</label> {{tempCartItem.quantity}}
+            </div>
+            <p class="mt-2" class="text-center">
+              Subtotal: {{tempCartItem.quantity * tempCartItem.unitPrice | currency: 'EUR'}}</p>
+          </td>
         </tr>
       </table>
     </div>
+  </div>
+</div>
