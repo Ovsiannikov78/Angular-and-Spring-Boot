@@ -25,6 +25,16 @@
               Subtotal: {{tempCartItem.quantity * tempCartItem.unitPrice | currency: 'EUR'}}</p>
           </td>
         </tr>
+
+        <tr>
+          <td colspan="2"></td>
+          <td style="font-weight: bold">
+            <p class="text-center">Total Quantity: {{ totalQuantity }}</p>
+            <p class="text-center">Shipping: FREE</p>
+            <p class="text-center">Total Price: {{ totalPrice | currency: 'EUR'}}</p>
+          </td>
+        </tr>
+
       </table>
     </div>
   </div>
