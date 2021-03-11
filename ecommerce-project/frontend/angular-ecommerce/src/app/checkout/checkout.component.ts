@@ -174,7 +174,7 @@ export class CheckoutComponent implements OnInit {
 
     // populate purchase - order and orderItems
     purchase.order = order;
-    purchase.orderItem = orderItems;
+    purchase.orderItems = orderItems;
 
     // call REST API via the CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
