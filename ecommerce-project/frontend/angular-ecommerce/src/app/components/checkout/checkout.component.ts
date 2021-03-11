@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Luv2ShopFormService} from '../luv2-shop-form.service';
-import {Country} from '../common/country';
-import {State} from '../common/state';
-import {Luv2ShopValidators} from '../validators/luv2-shop-validators';
-import {CartService} from '../services/cart.service';
-import {CheckoutService} from '../services/checkout.service';
+import {Luv2ShopFormService} from '../../luv2-shop-form.service';
+import {Country} from '../../common/country';
+import {State} from '../../common/state';
+import {Luv2ShopValidators} from '../../validators/luv2-shop-validators';
+import {CartService} from '../../services/cart.service';
+import {CheckoutService} from '../../services/checkout.service';
 import {Router} from '@angular/router';
-import {Order} from '../common/order';
-import {OrderItem} from '../common/order-item';
-import {Purchase} from '../common/purchase';
+import {Order} from '../../common/order';
+import {OrderItem} from '../../common/order-item';
+import {Purchase} from '../../common/purchase';
 
 @Component({
   selector: 'app-checkout',
