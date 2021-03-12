@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductService} from './services/product.service';
-import {Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule, Router} from '@angular/router';
 import {ProductCategoryMenuComponent} from './components/product-category-menu/product-category-menu.component';
 import {SearchComponent} from './components/search/search.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
@@ -17,8 +17,23 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 
+import {
+  OKTA_CONFIG,
+  OktaAuthModule,
+  OktaCallbackComponent
+} from '@okta/okta-angular';
+
+import myAppConfig from './config/my-app-config';
+
+const oktaConfig = Object.assign({
+  onAuthRequired: (injector) => {
+    const router = injector.get(Router);
+  }
+}, myAppConfig.oidc);
+
 const routes: Routes = [
-  {path: 'checkout', component: CheckoutComponent},
+  {path: 'login/callback', component: OktaCallbackComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
