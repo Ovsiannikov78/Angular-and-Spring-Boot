@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {CartItem} from '../common/cart-item';
-import {BehaviorSubject, Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { CartItem } from '../common/cart-item';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class CartService {
   totalPrice: Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
-  /*storage: Storage = sessionStorage;*/
-  storage: Storage = localStorage;
+  storage: Storage = sessionStorage;
+  // storage: Storage = localStorage;
 
   constructor() {
 
@@ -26,6 +26,7 @@ export class CartService {
       // compute totals based on the data that is read from storage
       this.computeCartTotals();
     }
+
   }
 
   addToCart(theCartItem: CartItem) {
@@ -35,10 +36,9 @@ export class CartService {
     let existingCartItem: CartItem = undefined;
 
     if (this.cartItems.length > 0) {
-
       // find the item in the cart based on item id
 
-      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
+      existingCartItem = this.cartItems.find( tempCartItem => tempCartItem.id === theCartItem.id );
 
       // check if we found it
       alreadyExistsInCart = (existingCartItem != undefined);
@@ -47,7 +47,8 @@ export class CartService {
     if (alreadyExistsInCart) {
       // increment the quantity
       existingCartItem.quantity++;
-    } else {
+    }
+    else {
       // just add the item to the array
       this.cartItems.push(theCartItem);
     }
@@ -56,17 +57,17 @@ export class CartService {
     this.computeCartTotals();
   }
 
-   computeCartTotals() {
+  computeCartTotals() {
 
-     let totalPriceValue: number = 0;
-     let totalQuantityValue: number = 0;
+    let totalPriceValue: number = 0;
+    let totalQuantityValue: number = 0;
 
-     for (let currentCartItem of this.cartItems) {
-       totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
-       totalQuantityValue += currentCartItem.quantity;
-     }
+    for (let currentCartItem of this.cartItems) {
+      totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
+      totalQuantityValue += currentCartItem.quantity;
+    }
 
-     // publish the new values ... all subscribers will receive the new data
+    // publish the new values ... all subscribers will receive the new data
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
@@ -74,7 +75,7 @@ export class CartService {
     this.logCartData(totalPriceValue, totalQuantityValue);
 
     // persist cart data
-     this.persistCartItems();
+    this.persistCartItems();
   }
 
   persistCartItems() {
@@ -83,30 +84,32 @@ export class CartService {
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
 
-    console.log('Content of the cart');
+    console.log('Contents of the cart');
     for (let tempCartItem of this.cartItems) {
       const subTotalPrice = tempCartItem.quantity * tempCartItem.unitPrice;
       console.log(`name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`);
     }
 
     console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
-    console.log(`----------`);
+    console.log('----');
   }
 
   decrementQuantity(theCartItem: CartItem) {
 
     theCartItem.quantity--;
+
     if (theCartItem.quantity === 0) {
       this.remove(theCartItem);
-    } else {
+    }
+    else {
       this.computeCartTotals();
     }
   }
 
   remove(theCartItem: CartItem) {
 
-    // get index of the item in the array
-    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
+    // get index of item in the array
+    const itemIndex = this.cartItems.findIndex( tempCartItem => tempCartItem.id === theCartItem.id );
 
     // if found, remove the item from the array at the given index
     if (itemIndex > -1) {

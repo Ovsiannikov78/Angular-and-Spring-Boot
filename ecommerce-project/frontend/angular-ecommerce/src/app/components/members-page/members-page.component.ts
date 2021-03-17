@@ -11,5 +11,4 @@ export class MembersPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
