@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Luv2ShopFormService } from './luv-2-shop-form.service';
+import { OrderHistoryService } from './order-history.service';
 
-describe('Luv2ShopFormService', () => {
-  let service: Luv2ShopFormService;
+describe('OrderHistoryService', () => {
+  let service: OrderHistoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Luv2ShopFormService);
+    service = TestBed.inject(OrderHistoryService);
   });
 
   it('should be created', () => {
