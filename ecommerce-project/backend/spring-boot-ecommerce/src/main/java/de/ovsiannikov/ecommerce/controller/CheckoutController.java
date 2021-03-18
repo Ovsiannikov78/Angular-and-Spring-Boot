@@ -5,7 +5,6 @@ import de.ovsiannikov.ecommerce.dto.PurchaseResponse;
 import de.ovsiannikov.ecommerce.service.CheckoutService;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {
